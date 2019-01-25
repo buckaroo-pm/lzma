@@ -37,6 +37,8 @@
 /*   5     8   Uncompressed size (little endian). -1 means unknown size */
 /*  13         Compressed data */
 
+#include <stdio.h>’
+
 #define BUFSIZE 4096
 
 int find_lzma_header(unsigned char *buf) {
@@ -64,11 +66,11 @@ int main(int argc, char *argv[]) {
 		ret = fread(buf, BUFSIZE, 1, stdin);
 		if (ret != 1)
 			break;
-		
+
 		/* Scan for signature. */
 		for (i = 0; i<BUFSIZE-23; i++) {
 			if (find_lzma_header(buf+i) && numlzma-- <= 0) {
-				fwrite(buf+i, (BUFSIZE-i), 1, stdout); 
+				fwrite(buf+i, (BUFSIZE-i), 1, stdout);
 				for (;;) {
 					int ch;
 					ch = getchar();
@@ -76,7 +78,7 @@ int main(int argc, char *argv[]) {
 						exit(0);
 					putchar(ch);
 				}
-					
+
 			}
 		}
 		blocks++;

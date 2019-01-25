@@ -1,0 +1,9 @@
+cxx_binary(
+  name = 'scanlzma',
+  srcs = [
+    'scanlzma.c',
+  ],
+  deps = [
+    '//:lzma',
+  ],
+)
